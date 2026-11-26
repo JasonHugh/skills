@@ -7,7 +7,7 @@
 | Skill | 说明 | 语言/依赖 |
 |-------|------|-----------|
 | [booklet-print](booklet-print/) | 把 PDF 重排成家用打印机可直接正反打印、装订成册的小册子（骑马钉 / 平装左订） | Python 3 · pypdf |
-| [book-uploader](book-uploader/) | 把绘本（PDF/PPT/图片）录入伴读系统：渲染、视觉精读、算指纹、建书、传真人音频/TTS、识别自检 | Python 3 · requests · PIL |
+| [book-uploader](book-uploader/) | 把绘本（PDF/PPT/图片）录入[绘本伴读](https://aiyuer.top/book/)系统：渲染、视觉精读、算指纹、建书、传真人音频/TTS、识别自检 | Python 3 · requests · PIL |
 
 ## 使用方式
 
@@ -48,6 +48,8 @@ python3 booklet-print/scripts/build_booklet.py \
 完整规则见 [booklet-print/SKILL.md](booklet-print/SKILL.md)。
 
 ### book-uploader
+
+本 skill 服务于 **[绘本伴读](https://aiyuer.top/book/)**（慢慢读，好好陪）——面向亲子共读的 AI 绘本伴读网站：摄像头对准书页自动识别翻页朗读、中英双语配音、黑屏伴读、云端不保存原始照片。本 skill 负责把新绘本完整录入其书库，使其可被摄像头识别并伴读。
 
 把一本绘本从「PDF / PPT / 图片 + 分页文字 + 可选音频」变成服务器上可被摄像头识别并伴读的书。
 
