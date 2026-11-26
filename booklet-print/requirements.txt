@@ -1,0 +1,9 @@
+# booklet-print 依赖
+# 安装：pip3 install -r requirements.txt
+
+# 必需：PDF 读取、页面重排与写出（build_booklet.py）
+pypdf>=5.0
+
+# 可选：把 PDF 每页渲染成缩略图总览，用于生成前的视觉检查
+# （SKILL.md 工作流「渲染总览并询问删页省纸」步骤会用到）
+Pillow>=10.0
