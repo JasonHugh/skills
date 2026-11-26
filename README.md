@@ -7,6 +7,7 @@
 | Skill | 说明 | 语言/依赖 |
 |-------|------|-----------|
 | [booklet-print](booklet-print/) | 把 PDF 重排成家用打印机可直接正反打印、装订成册的小册子（骑马钉 / 平装左订） | Python 3 · pypdf |
+| [book-uploader](book-uploader/) | 把绘本（PDF/PPT/图片）录入伴读系统：渲染、视觉精读、算指纹、建书、传真人音频/TTS、识别自检 | Python 3 · requests · PIL |
 
 ## 使用方式
 
@@ -45,6 +46,35 @@ python3 booklet-print/scripts/build_booklet.py \
 参数：`--mode saddle|flat` 装订模式；`--drop` 逗号分隔的原书页码（需用户确认）；`--target-from first|smallest` 目标框基准；`--verify` 打印跨页与尺寸校验。
 
 完整规则见 [booklet-print/SKILL.md](booklet-print/SKILL.md)。
+
+### book-uploader
+
+把一本绘本从「PDF / PPT / 图片 + 分页文字 + 可选音频」变成服务器上可被摄像头识别并伴读的书。
+
+- **五步工作流**：render（渲染）→ 视觉精读（抄录+润色正文）→ fingerprint（算指纹）→ create（建书+封面+写页+音频）→ 识别自检
+- **双音频模式**：human（上传真人录音）/ tts（按正文自动合成）
+- **三层指纹**：dhash + feat（SIFT）+ orb，与服务端摄像头识别同源
+- **凭据安全**：账号密码不写死，首次使用时交互式询问并保存到本机缓存（`~/.book-uploader-credentials.json`，权限 600）
+
+脚本用法：
+
+```bash
+# 一条龙（PDF + 真人音频）
+python3 book-uploader/scripts/upload_book.py run \
+  --src books/好饿的毛毛虫.pdf \
+  --out ./work \
+  --meta ./work/meta.json
+
+# 分步：渲染 → 指纹 → 建书
+python3 book-uploader/scripts/upload_book.py render --src 书.pdf --out ./work
+python3 book-uploader/scripts/upload_book.py fingerprint --dir ./work
+python3 book-uploader/scripts/upload_book.py create \
+  --dir ./work --meta ./work/meta.json --audio-dir <音频目录>
+```
+
+首次运行需要登录的命令时会提示输入账号密码，保存后下次自动读取。
+
+完整规则见 [book-uploader/SKILL.md](book-uploader/SKILL.md)。
 
 ## License
 
