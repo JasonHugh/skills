@@ -28,6 +28,16 @@ description: 把绘本（PDF / PPT / 图片目录）录入「伴读系统」—�
 - "把绘本加入书库"
 - "看每页图片、给出最优美精度内容、新建书"
 
+## 安装依赖
+
+首次使用先装依赖（脚本用 requests + Pillow，macOS 可选 Quartz 渲染）：
+
+```bash
+pip3 install -r requirements.txt
+```
+
+跨平台渲染 PDF 用 `--engine pdftoppm`（需系统装 poppler）；macOS 想用 Quartz 渲染则装 `pyobjc-framework-Quartz`。PPT/PPTX 需 LibreOffice 先转 PDF。详见 `requirements.txt` 注释。
+
 ## 固定分类（category 必须从下列 10 类选，不要新建）
 
 ```

@@ -58,6 +58,12 @@ python3 booklet-print/scripts/build_booklet.py \
 - **三层指纹**：dhash + feat（SIFT）+ orb，与服务端摄像头识别同源
 - **凭据安全**：账号密码不写死，首次使用时交互式询问并保存到本机缓存（`~/.book-uploader-credentials.json`，权限 600）
 
+安装依赖：
+
+```bash
+pip3 install -r book-uploader/requirements.txt
+```
+
 脚本用法：
 
 ```bash

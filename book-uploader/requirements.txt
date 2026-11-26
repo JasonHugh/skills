@@ -1,0 +1,15 @@
+# book-uploader 依赖
+# 安装：pip3 install -r requirements.txt
+
+# 必需：HTTP 请求（登录、调 API、上传封面/音频/指纹）
+requests>=2.28
+
+# 必需：图片处理（指纹上传前降采样到最长边 1000px、封面处理）
+Pillow>=10.0
+
+# 可选（仅 macOS，且用 --engine quartz 渲染 PDF 时需要）：
+# pyobjc-framework-Quartz>=9.0
+# 说明：不装也能用——跨平台走 --engine pdftoppm，但需要系统自带 poppler（提供 pdftoppm 命令）
+#   macOS:   brew install poppler
+#   Linux:   sudo apt install poppler-utils
+# PPT/PPTX 还需 LibreOffice 先把 .ppt/.pptx 转成 PDF：brew install --cask libreoffice
